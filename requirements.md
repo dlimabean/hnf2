@@ -4,8 +4,8 @@ This document outlines the core features and rules for a Minimum Viable Product 
 
 ## 1. Core Game Concept
 
-- **Game Type:** Four-player, two-team partnership game. Partners will be seated opposite each other.
-- **Objective:** Be the first team to score the most points over four rounds of play. Points are earned by melding cards and creating books.
+- **Game Type:** Four-player, two-team partnership game. Partners will be seated opposite each other. Or two teams of one player each.
+- **Objective:** Be the team to score the most points over four rounds of play. Points are earned by melding cards and creating books.
 - **Platform:** Web browser.
 
 ## 2. Game Setup & Deck
@@ -25,8 +25,8 @@ This document outlines the core features and rules for a Minimum Viable Product 
 
 A player's turn will consist of the following steps, enforced by the game logic:
 1.  **Draw:** The player MUST draw cards.
-    - Draw **two** cards from the Stock Pile.
-    - OR, pick up the **top 7 cards** from the Discard Pile. This is only allowed if the top card is not a black 3, and the player holds two cards of the same rank as the top card. The player must immediately meld the top card with their two matching cards.
+    - Draw one card from the Stock Pile.
+    - OR, pick up the **top 5 cards** from the Discard Pile. This is only allowed if the player holds two cards of the same rank as the top card. The player must immediately meld the top card with their two matching cards.
 2.  **Meld (Optional):** The player may meld cards by placing them on the table.
     - Melds are shared between partners.
     - The game will enforce the minimum meld requirement for each round.
@@ -37,7 +37,7 @@ A player's turn will consist of the following steps, enforced by the game logic:
 - **Melds:** A set of 3 to 6 cards of the same rank.
 - **Books:** A completed meld of 7 cards. The game will automatically close a book when the 7th card is added.
     - **Clean Book (Red Book):** 7 natural cards.
-    - **Dirty Book (Black Book):** Contains wild cards (Jokers or 2s). Must contain more natural cards than wild cards.
+    - **Dirty Book (Black Book):** Contains wild cards (Jokers or 2s). Must contain no more than 2 wild cards.
 - **Initial Meld Requirement:** A team's first meld in each round must meet a minimum point value:
     - **Round 1:** 50 points
     - **Round 2:** 90 points
@@ -46,9 +46,7 @@ A player's turn will consist of the following steps, enforced by the game logic:
 
 ### 3.3. Special Cards
 
-- **Red 3s:** If drawn, a Red 3 is automatically played to the team's meld area, and a replacement card is drawn from the Stock Pile.
-- **Black 3s:** Cannot be melded except on the turn a player is going out. When discarded, they block the next player from picking up the Discard Pile.
-- **Wild Cards (Jokers & 2s):** Can be used to substitute any card in a meld (except 3s).
+- **Wild Cards (Jokers & 2s):** Can be used to substitute any card in a meld (except red 3s).
 
 ### 3.4. The Foot
 
@@ -57,9 +55,8 @@ A player's turn will consist of the following steps, enforced by the game logic:
 ### 3.5. Going Out
 
 - The round ends when a player "goes out".
-- To go out, the team must have completed at least one Clean Book and one Dirty Book.
+- To go out, the team must have completed at least one Clean Book.
 - A player must play all cards from their Hand and Foot, ending with a final discard or meld.
-- For the MVP, the player will not need to ask their partner for permission. The game will automatically end the round when a player successfully goes out.
 
 ## 4. Scoring
 
@@ -67,9 +64,9 @@ At the end of each round, the game will automatically calculate and display the 
 
 - **Positive Points:**
     - Going Out Bonus: +100 points
-    - Clean Book: +500 points each
-    - Dirty Book: +300 points each
-    - Red 3s: +100 points each (only if the team has melded)
+    - Clean Book: +300 points each
+    - Dirty Book: +100 points each
+    - Red 3s: +500 points each (only if the team has melded)
     - Card values from all melded cards.
 - **Negative Points:**
     - Card values of all cards left in the players' Hands and Feet are subtracted from the team's score.
@@ -78,11 +75,12 @@ At the end of each round, the game will automatically calculate and display the 
     - **Aces, 2s:** 20 pts
     - **K, Q, J, 10, 9, 8:** 10 pts
     - **7, 6, 5, 4:** 5 pts
-    - **Black 3s:** 5 pts (when left in hand)
+    - **Black 3s:** 5 pts 
+    - **Red 3s:** 300 pts 
 
 ## 5. User Interface & Experience (MVP)
 
-- **Game Lobby:** A simple screen where players can gather before starting a game. For the MVP, we can assume 4 players are present.
+- **Game Lobby:** A simple screen where players can gather before starting a game. For the MVP, we can assume 2 players are present.
 - **Game Board:** A clear view of the table showing:
     - The player's own Hand (and Foot when available).
     - Team meld areas.
